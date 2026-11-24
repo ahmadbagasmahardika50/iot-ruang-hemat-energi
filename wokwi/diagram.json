@@ -1,0 +1,84 @@
+{
+  "version": 1,
+  "author": "Kelompok 2 Tema C",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 9.6, "left": 4.84, "attrs": {} },
+    {
+      "type": "wokwi-pir-motion-sensor",
+      "id": "pir1",
+      "top": 138.4,
+      "left": -247.38,
+      "attrs": { "delayTime": "1" }
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ldr1",
+      "top": -83.2,
+      "left": -248.8,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -124.5,
+      "left": 71.4,
+      "attrs": { "temperature": "29.1", "humidity": "48.5" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -3.6,
+      "left": -284.2,
+      "attrs": { "color": "yellow", "label": "Lampu" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 42.65,
+      "left": -212.6,
+      "rotate": 180,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": 201.8, "left": 182.4, "attrs": {} },
+    {
+      "type": "wokwi-buzzer",
+      "id": "bz1",
+      "top": 149.1,
+      "left": -146.7,
+      "rotate": 270,
+      "attrs": { "volume": "0.5" }
+    },
+    { "type": "board-ssd1306", "id": "oled1", "top": -97.74, "left": 173.17, "attrs": {} }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "pir1:VCC", "esp:5V", "red", [ "v48", "h201.6", "v-67.2" ] ],
+    [ "pir1:GND", "esp:GND.1", "black", [ "v28.8", "h162.94", "v-96" ] ],
+    [ "pir1:OUT", "esp:13", "green", [ "v38.4", "h182.26", "v-96" ] ],
+    [ "ldr1:VCC", "esp:3V3", "red", [ "h67.2", "v105.6", "h19.05" ] ],
+    [ "ldr1:GND", "esp:GND.1", "black", [ "h28.8", "v220.4" ] ],
+    [ "ldr1:AO", "esp:34", "blue", [ "h19.2", "v114.5" ] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "h-76.8", "v28.8", "h-0.15" ] ],
+    [ "dht1:GND", "esp:GND.3", "black", [ "h38.4", "v-134.4", "h163.2", "v240" ] ],
+    [ "dht1:SDA", "esp:15", "purple", [ "v9.6", "h67.3", "v-134.4", "h144", "v316.8" ] ],
+    [ "esp:25", "r1:1", "orange", [ "h-143.85", "v-67.2" ] ],
+    [ "r1:2", "led1:A", "orange", [ "h-46.8" ] ],
+    [ "led1:C", "esp:GND.1", "black", [ "v76.8", "h221.2", "v48" ] ],
+    [ "relay1:VCC", "esp:5V", "red", [ "h-192", "v-9.6" ] ],
+    [
+      "relay1:GND",
+      "esp:GND.1",
+      "black",
+      [ "h-182.4", "v57.2", "h-268.8", "v-153.6", "h220.8", "v28.8" ]
+    ],
+    [ "relay1:IN", "esp:26", "cyan", [ "v-0.2", "h-172.8", "v57.6", "h-288", "v-172.8" ] ],
+    [ "bz1:2", "esp:27", "yellow", [ "h28.8", "v-57.2" ] ],
+    [ "bz1:1", "esp:GND.1", "black", [ "h38.4", "v-38.4" ] ],
+    [ "oled1:GND", "esp:GND.2", "black", [ "v-33.52", "h86.26", "v163.2" ] ],
+    [ "oled1:SDA", "esp:21", "green", [ "v-33.52", "h57.53", "v211.2" ] ],
+    [ "oled1:SCL", "esp:22", "gold", [ "v-33.52", "h67.36", "v182.4" ] ]
+  ],
+  "dependencies": {}
+}
