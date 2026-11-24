@@ -187,13 +187,14 @@ void sambungMqtt() {
 }
 
 void kirimData() {
-  char buf[420];
+  char buf[480];
   snprintf(buf, sizeof(buf),
-    "{\"seq\":%lu,\"status\":\"%s\",\"pir\":%d,\"sejak_gerak\":%.1f,\"lux\":%.0f,\"suhu\":%.1f,\"hum\":%.0f,"
+    "{\"token\":\"%s\",\"seq\":%lu,\"status\":\"%s\",\"pir\":%d,\"sejak_gerak\":%.1f,\"lux\":%.0f,\"suhu\":%.1f,\"hum\":%.0f,"
     "\"lampu\":%d,\"ac\":%d,\"kwh_aktual\":%.4f,\"kwh_baseline\":%.4f,\"kwh_hemat\":%.4f,"
     "\"persen\":%.1f,\"rupiah\":%.1f,\"kosong_event\":%d,\"false_off\":%d}",
-    ++seq, NAMA[status], adaGerak(), pernahGerak ? sejakMenit() : -1.0, lux, suhu, hum,
-    duty, acOn, kwhAktual, kwhBase, kwhHemat, persenHemat, rupiahHemat, kosongEvent, falseOff);
+    DEVICE_TOKEN, ++seq, NAMA[status], adaGerak(), pernahGerak ? sejakMenit() : -1.0,
+    lux, suhu, hum, duty, acOn, kwhAktual, kwhBase, kwhHemat,
+    persenHemat, rupiahHemat, kosongEvent, falseOff);
   mqtt.publish(topikData, buf);
 }
 
